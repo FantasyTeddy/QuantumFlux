@@ -100,6 +100,8 @@ public class ItemCraftingPiece extends ItemBase {
 
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (tab != QuantumFluxMod.tab)
+			return;
 
 		for (int i = 0; i < subItemList.size(); i++) {
 			items.add(new ItemStack(this, 1, i));
