@@ -10,8 +10,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 
-public class TileZeroPointExtractor extends TileBase implements IEnergyProvider, ITickable {
+import javax.annotation.Nullable;
+
+public class TileZeroPointExtractor extends TileBase implements IEnergyProvider, IEnergyStorage, ITickable {
 
 	private EnergyStorage energy;
 
@@ -52,21 +57,34 @@ public class TileZeroPointExtractor extends TileBase implements IEnergyProvider,
 			BlockPos targetBlock = getPos().add(dir.getDirectionVec());
 
 			TileEntity tile = world.getTileEntity(targetBlock);
+			if (tile == null)
+				continue;
 			if (tile instanceof IEnergyReceiver) {
 				IEnergyReceiver receiver = (IEnergyReceiver) tile;
 
 				if (receiver.canConnectEnergy(dir.getOpposite())) {
 					int tosend = energy.extractEnergy(ConfigMan.zpe_maxPowerGen, true);
-					int used = ((IEnergyReceiver) tile).receiveEnergy(dir.getOpposite(), tosend, false);
+					int used = receiver.receiveEnergy(dir.getOpposite(), tosend, false);
 					// TODO: need this? It doesn't really *need* state saved
 					if (used > 0) {
 						this.markDirty();
 					}
 					energy.extractEnergy(used, false);
 				}
-
 			}
+			else if (tile.hasCapability(CapabilityEnergy.ENERGY, dir.getOpposite())) {
+				IEnergyStorage receiver = tile.getCapability(CapabilityEnergy.ENERGY, dir.getOpposite());
 
+				if (receiver.canReceive()) {
+					int tosend = energy.extractEnergy(ConfigMan.zpe_maxPowerGen, true);
+					int used = receiver.receiveEnergy(tosend, false);
+					// TODO: need this? It doesn't really *need* state saved
+					if (used > 0) {
+						this.markDirty();
+					}
+					energy.extractEnergy(used, false);
+				}
+			}
 		}
 	}
 
@@ -88,5 +106,53 @@ public class TileZeroPointExtractor extends TileBase implements IEnergyProvider,
 	@Override
 	public int getMaxEnergyStored(EnumFacing from) {
 		return energy.getMaxEnergyStored();
+	}
+
+	@Override
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+		if (capability == CapabilityEnergy.ENERGY)
+			return true;
+
+		return super.hasCapability(capability, facing);
+	}
+
+	@Nullable
+	@Override
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
+	{
+		if (capability == CapabilityEnergy.ENERGY)
+			return (T) this;
+
+		return super.getCapability(capability, facing);
+	}
+
+	@Override
+	public boolean canExtract()	{
+		return canConnectEnergy(null);
+	}
+
+	@Override
+	public int extractEnergy(int maxExtract, boolean simulate) {
+		return extractEnergy(null, maxExtract, simulate);
+	}
+
+	@Override
+	public boolean canReceive()	{
+		return false;
+	}
+
+	@Override
+	public int receiveEnergy(int maxReceive, boolean simulate) {
+		return 0;
+	}
+
+	@Override
+	public int getEnergyStored() {
+		return getEnergyStored(null);
+	}
+
+	@Override
+	public int getMaxEnergyStored() {
+		return getMaxEnergyStored(null);
 	}
 }

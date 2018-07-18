@@ -11,8 +11,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 
-public class TileImaginaryTime extends TileBase implements IEnergyReceiver, ITickable {
+import javax.annotation.Nullable;
+
+public class TileImaginaryTime extends TileBase implements IEnergyReceiver, IEnergyStorage, ITickable {
 	protected EnergyStorage localEnergyStorage;
 
 	public TileImaginaryTime() {
@@ -92,4 +97,51 @@ public class TileImaginaryTime extends TileBase implements IEnergyReceiver, ITic
 		return localEnergyStorage.getMaxEnergyStored();
 	}
 
+	@Override
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+		if (capability == CapabilityEnergy.ENERGY)
+			return true;
+
+		return super.hasCapability(capability, facing);
+	}
+
+	@Nullable
+	@Override
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
+	{
+		if (capability == CapabilityEnergy.ENERGY)
+			return (T) this;
+
+		return super.getCapability(capability, facing);
+	}
+
+	@Override
+	public boolean canExtract()	{
+		return false;
+	}
+
+	@Override
+	public int extractEnergy(int maxExtract, boolean simulate) {
+		return 0;
+	}
+
+	@Override
+	public boolean canReceive()	{
+		return canConnectEnergy(null);
+	}
+
+	@Override
+	public int receiveEnergy(int maxReceive, boolean simulate) {
+		return receiveEnergy(null, maxReceive, simulate);
+	}
+
+	@Override
+	public int getEnergyStored() {
+		return getEnergyStored(null);
+	}
+
+	@Override
+	public int getMaxEnergyStored() {
+		return getMaxEnergyStored(null);
+	}
 }

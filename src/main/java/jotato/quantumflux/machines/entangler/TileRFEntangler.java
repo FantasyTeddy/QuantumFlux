@@ -12,8 +12,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 
-public class TileRFEntangler extends TileEntity implements IEnergyReceiver, IRedfluxProvider, ITickable
+import javax.annotation.Nullable;
+
+public class TileRFEntangler extends TileEntity implements IEnergyReceiver, IRedfluxProvider, IEnergyStorage, ITickable
 {
 
 	public UUID owner;
@@ -189,5 +194,43 @@ public class TileRFEntangler extends TileEntity implements IEnergyReceiver, IRed
 		
 		lastIn = 0;
 		lastOut = 0;
+	}
+
+	@Override
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+		if (capability == CapabilityEnergy.ENERGY)
+			return true;
+
+		return super.hasCapability(capability, facing);
+	}
+
+	@Nullable
+	@Override
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
+	{
+		if (capability == CapabilityEnergy.ENERGY)
+			return (T) this;
+
+		return super.getCapability(capability, facing);
+	}
+
+	@Override
+	public boolean canExtract()	{
+		return false;
+	}
+
+	@Override
+	public int extractEnergy(int maxExtract, boolean simulate) {
+		return 0;
+	}
+
+	@Override
+	public int getEnergyStored() {
+		return getEnergyStored(null);
+	}
+
+	@Override
+	public int getMaxEnergyStored() {
+		return getMaxEnergyStored(null);
 	}
 }

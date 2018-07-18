@@ -1,10 +1,15 @@
 package jotato.quantumflux.machines.cluster;
 
 import cofh.redstoneflux.api.IEnergyContainerItem;
+import cofh.redstoneflux.util.EnergyContainerItemWrapper;
 import jotato.quantumflux.helpers.NbtHelpers;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+
+import javax.annotation.Nullable;
 
 public class ItemBlockQuibitCluster extends ItemBlock implements IEnergyContainerItem {
 
@@ -68,5 +73,12 @@ public class ItemBlockQuibitCluster extends ItemBlock implements IEnergyContaine
 
 	public void setEnergyStored(ItemStack container, int energy) {
 		NbtHelpers.setInt(container, energy_tag, energy);
+	}
+
+	@Nullable
+	@Override
+	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt)
+	{
+		return new EnergyContainerItemWrapper(stack, this);
 	}
 }

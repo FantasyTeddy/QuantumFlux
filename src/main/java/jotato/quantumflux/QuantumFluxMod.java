@@ -15,11 +15,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = QuantumFluxMod.MODID, version = QuantumFluxMod.VERSION, name = QuantumFluxMod.MODNAME)
+@Mod(modid = QuantumFluxMod.MODID, version = QuantumFluxMod.VERSION, name = QuantumFluxMod.MODNAME, dependencies = QuantumFluxMod.DEPENDENCIES)
 public class QuantumFluxMod {
 	public static final String MODID = "quantumflux";
 	public static final String MODNAME = "QuantumFlux";
 	public static final String VERSION = "2.0.13";
+	public static final String DEPENDENCIES = "required-after:redstoneflux";
 	public static final String TEXTURE_BASE = MODID + ":";
 
 	public QuantumFluxMod() {

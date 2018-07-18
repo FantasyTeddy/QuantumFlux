@@ -13,8 +13,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 
-public class TileRFExciter extends TileEntity implements IEnergyProvider, ITickable
+import javax.annotation.Nullable;
+
+public class TileRFExciter extends TileEntity implements IEnergyProvider, IEnergyStorage, ITickable
 {
 	public UUID owner;
 	public int lastEnergyUsed;
@@ -33,11 +38,6 @@ public class TileRFExciter extends TileEntity implements IEnergyProvider, ITicka
 	public String getOwner()
 	{
 		return owner == null ? null : owner.toString();
-	}
-
-	public boolean canReceive()
-	{
-		return true;
 	}
 
 	@Override
@@ -135,6 +135,8 @@ public class TileRFExciter extends TileEntity implements IEnergyProvider, ITicka
 		BlockPos targetBlock = getPos().add(targetDirection.getDirectionVec());
 
 		TileEntity tile = world.getTileEntity(targetBlock);
+		if (tile == null)
+			return;
 		if (tile instanceof IEnergyReceiver)
 		{
 		    int netPower = getNetPower();
@@ -151,10 +153,76 @@ public class TileRFExciter extends TileEntity implements IEnergyProvider, ITicka
 			lastEnergyUsed = needed;
 			extractEnergy(null, needed, false);
 		}
+		else if (tile.hasCapability(CapabilityEnergy.ENERGY, targetDirection.getOpposite())) {
+			IEnergyStorage receiver = tile.getCapability(CapabilityEnergy.ENERGY, targetDirection.getOpposite());
+
+			if (receiver.canReceive()) {
+				int netPower = getNetPower();
+				int tosend = extractEnergy(null, netPower, true);
+				int needed = receiver.receiveEnergy(tosend, true);
+				int willSend = Math.round(needed * wirelessEfficiency);
+				receiver.receiveEnergy(willSend, false);
+
+				if (needed > 0)
+				{
+					this.markDirty();
+				}
+				lastEnergyUsed = needed;
+				extractEnergy(null, needed, false);
+			}
+		}
 	}
 	
 	public int getNetPower(){
 	    int power = maxOut + upgradeCount * 100;
 	    return power;
+	}
+
+	@Override
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+		if (capability == CapabilityEnergy.ENERGY)
+			return true;
+
+		return super.hasCapability(capability, facing);
+	}
+
+	@Nullable
+	@Override
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
+	{
+		if (capability == CapabilityEnergy.ENERGY)
+			return (T) this;
+
+		return super.getCapability(capability, facing);
+	}
+
+	@Override
+	public boolean canExtract()	{
+		return canConnectEnergy(null);
+	}
+
+	@Override
+	public int extractEnergy(int maxExtract, boolean simulate) {
+		return extractEnergy(null, maxExtract, simulate);
+	}
+
+	@Override
+	public boolean canReceive()	{
+		return false;
+	}
+
+	@Override
+	public int receiveEnergy(int maxReceive, boolean simulate) {
+		return 0;
+	}
+
+	@Override
+	public int getEnergyStored() {
+		return getEnergyStored(null);
+	}
+
+	@Override
+	public int getMaxEnergyStored() {
+		return getMaxEnergyStored(null);
 	}
 }
