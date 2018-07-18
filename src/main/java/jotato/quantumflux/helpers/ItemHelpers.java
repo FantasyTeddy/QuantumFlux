@@ -13,9 +13,9 @@ public final class ItemHelpers {
 	public static void addFlairToList(List<String> tooltip, String flairName) {
 		String flair = "flair." + flairName;
 		
-		
 		ITextComponent message = new TextComponentTranslation(flair);
-		tooltip.add(message.getFormattedText());
+		if (!message.getUnformattedText().equals(flair))
+			tooltip.add(message.getFormattedText());
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
