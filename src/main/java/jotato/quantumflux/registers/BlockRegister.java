@@ -1,6 +1,7 @@
 package jotato.quantumflux.registers;
 
 import jotato.quantumflux.Logger;
+import jotato.quantumflux.QuantumFluxMod;
 import jotato.quantumflux.blocks.BlockBase;
 import jotato.quantumflux.blocks.BlockGraphiteOre;
 import jotato.quantumflux.blocks.darkstone.BlockDarkstone;
@@ -20,6 +21,7 @@ import jotato.quantumflux.machines.telepad.BlockTelepad;
 import jotato.quantumflux.machines.telepad.TileTelepad;
 import jotato.quantumflux.machines.zpe.BlockZeroPointExtractor;
 import jotato.quantumflux.machines.zpe.TileZeroPointExtractor;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -58,14 +60,14 @@ public final class BlockRegister {
 
 	private static void initTileEntities() {
 		Logger.devLog("Registering TileEntities");
-		GameRegistry.registerTileEntity(TileImaginaryTime.class, "QFTILE_imaginaryTime");
-		GameRegistry.registerTileEntity(TileZeroPointExtractor.class, "QFTILE_zeroPointExtractor");
-		GameRegistry.registerTileEntity(TileEntropyAccelerator.class, "QFTILE_entropyAccelerator");
-		GameRegistry.registerTileEntity(TileQuibitCluster.class, "QFTILE_quibitCluster");
-		GameRegistry.registerTileEntity(TileCreativeCluster.class, "QFTILE_creativeCluster");
-		GameRegistry.registerTileEntity(TileRFEntangler.class, "QFTILE_rfEntnagler");
-		GameRegistry.registerTileEntity(TileRFExciter.class, "QFTILE_rfExciter");
-		GameRegistry.registerTileEntity(TileTelepad.class, "QFTILE_telepad");
+		GameRegistry.registerTileEntity(TileImaginaryTime.class, new ResourceLocation(QuantumFluxMod.MODID, "QFTILE_imaginaryTime"));
+		GameRegistry.registerTileEntity(TileZeroPointExtractor.class, new ResourceLocation(QuantumFluxMod.MODID, "QFTILE_zeroPointExtractor"));
+		GameRegistry.registerTileEntity(TileEntropyAccelerator.class, new ResourceLocation(QuantumFluxMod.MODID, "QFTILE_entropyAccelerator"));
+		GameRegistry.registerTileEntity(TileQuibitCluster.class, new ResourceLocation(QuantumFluxMod.MODID, "QFTILE_quibitCluster"));
+		GameRegistry.registerTileEntity(TileCreativeCluster.class, new ResourceLocation(QuantumFluxMod.MODID, "QFTILE_creativeCluster"));
+		GameRegistry.registerTileEntity(TileRFEntangler.class, new ResourceLocation(QuantumFluxMod.MODID, "QFTILE_rfEntnagler"));
+		GameRegistry.registerTileEntity(TileRFExciter.class, new ResourceLocation(QuantumFluxMod.MODID, "QFTILE_rfExciter"));
+		GameRegistry.registerTileEntity(TileTelepad.class, new ResourceLocation(QuantumFluxMod.MODID, "QFTILE_telepad"));
 
 	}
 
