@@ -1,9 +1,6 @@
-Summary: 
+**Summary**
+Describe the changes of your Pull Request.
 
-Fixes #
-
-Changes proposed:
-
-- 
-- 
-- 
+**Related issues**
+- Issue #
+- Feature #
