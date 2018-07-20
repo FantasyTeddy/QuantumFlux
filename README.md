@@ -2,15 +2,16 @@
 
 
 ## QuantumFlux for Minecraft
+QuantumFlux is a Forge mod for Minecraft that focuses on adding ways to generate, store, and transport RF power. More information can be found on the official [forum topic](http://bitly.com/19gUP8j) or the wiki.
 
-QuantumFlux is a Forge mod for Minecraft that focuses on adding ways to generate, store, and transport RF power. More information can be found on the official [forum topic](http://bitly.com/19gUP8j) or the wiki.  
-Download from [CurseForge](http://www.curse.com/mc-mods/minecraft/228609-quantumflux)
+### Ownership
+This repository contains the official QuantumFlux source code since Minecraft 1.11. (see: [Ownership of QuantumFlux changing](https://www.reddit.com/r/feedthebeast/comments/8zb4i2/ownership_of_quantumflux_changing/))
+
+### Downloads
+The official releases can be found at [CurseForge](http://www.curse.com/mc-mods/minecraft/228609-quantumflux).
 
 ### Modpack Distribution
-Sure, please link [to this site](http://minecraft.curseforge.com/mc-mods/228609-quantumflux) though. A link to [my patreon](http://www.patreon.com/jotato) would be appriciated. Just don't be a jerk, make claims you can't back, or sell mod items on your server.
-
-###Credits
-Thanks to [FantasyTeddy](https://github.com/FantasyTeddy) for help with fixing bugs  
+Sure, please link to the [CurseForge project](https://minecraft.curseforge.com/projects/quantumflux) page though. Just don't be a jerk, make claims you can't back, or sell mod items on your server.
 
 ### License
 **Copyright 2015 Joe Kaiser**  
