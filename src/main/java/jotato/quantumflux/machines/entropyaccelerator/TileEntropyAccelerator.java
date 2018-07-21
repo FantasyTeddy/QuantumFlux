@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 public class TileEntropyAccelerator extends TileSimpleInventory implements IEnergyProvider, IEnergyStorage, ITickable {
 
 	public TileEntropyAccelerator() {
-		super(1, "");
+		super(1);
 		maxBurnTime = ConfigMan.incinerator_burnTime;
 		energy = new EnergyStorage(ConfigMan.incinerator_buffer, Integer.MAX_VALUE, ConfigMan.incinerator_output);
 	}
@@ -72,9 +72,7 @@ public class TileEntropyAccelerator extends TileSimpleInventory implements IEner
 
 				if (this.currentBurnTime == 0) {
 					isBurning = true;
-					this.inventory[0].shrink(1);
-					if (this.inventory[0].getCount() == 0)
-						this.inventory[0] = null;
+					this.itemHandler.extractItem(0, 1, false);
 				}
 
 				this.energy.receiveEnergy(ConfigMan.incinerator_output, false);
@@ -130,8 +128,7 @@ public class TileEntropyAccelerator extends TileSimpleInventory implements IEner
 	}
 
 	private boolean hasFuel() {
-		return this.inventory != null && this.inventory.length > 0 && 
-				this.inventory[0] != null && this.inventory[0].getCount() > 0;
+		return !this.itemHandler.getStackInSlot(0).isEmpty();
 	}
 
 	@SideOnly(Side.CLIENT)
