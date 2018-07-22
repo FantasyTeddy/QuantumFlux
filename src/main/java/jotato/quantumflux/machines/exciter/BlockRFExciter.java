@@ -46,6 +46,11 @@ public class BlockRFExciter extends BlockBase implements ITileEntityProvider {
 	}
 
 	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+		return this.getDefaultState().withProperty(BlockHelpers.FACING, facing.getOpposite());
+	}
+
+	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(BlockHelpers.FACING, EnumFacing.getFront(meta & 7));
 	}
