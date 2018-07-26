@@ -7,6 +7,7 @@ import jotato.quantumflux.registers.ItemRegister;
 import jotato.quantumflux.registers.RecipeRegister;
 import jotato.quantumflux.registers.WorldRegister;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class ProxyCommon {
 
@@ -18,8 +19,7 @@ public class ProxyCommon {
 	}
 
 	public void init() {
-		
-
+		NetworkRegistry.INSTANCE.registerGuiHandler(QuantumFluxMod.instance, new GuiProxy());
 	}
 
 	public void postInit() {

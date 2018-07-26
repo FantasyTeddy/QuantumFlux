@@ -1,5 +1,6 @@
 package jotato.quantumflux.machines.entropyaccelerator;
 
+import jotato.quantumflux.QuantumFluxMod;
 import jotato.quantumflux.blocks.BlockBase;
 import jotato.quantumflux.helpers.BlockHelpers;
 import jotato.quantumflux.helpers.EntityHelpers;
@@ -16,6 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockEntropyAccelerator extends BlockBase implements ITileEntityProvider {
+
+	public static final int GUI_ID = 0;
 
 	public BlockEntropyAccelerator() {
 		super("entropyAccelerator");
@@ -54,8 +57,13 @@ public class BlockEntropyAccelerator extends BlockBase implements ITileEntityPro
 			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
 		if (worldIn.isRemote)
+			return true;
+
+		TileEntity tileEntity = worldIn.getTileEntity(pos);
+		if (!(tileEntity instanceof TileEntropyAccelerator))
 			return false;
 
-		return BlockHelpers.BroadcastRFStored(playerIn, worldIn.getTileEntity(pos));
+		playerIn.openGui(QuantumFluxMod.instance, GUI_ID, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		return true;
 	}
 }

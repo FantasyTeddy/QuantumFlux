@@ -5,6 +5,7 @@ import cofh.redstoneflux.api.IEnergyReceiver;
 import cofh.redstoneflux.impl.EnergyStorage;
 import jotato.quantumflux.ConfigMan;
 import jotato.quantumflux.blocks.TileSimpleInventory;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -40,10 +41,6 @@ public class TileEntropyAccelerator extends TileSimpleInventory implements IEner
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag = super.writeToNBT(tag);
 		tag.setShort("currentBurnTime", (short) this.currentBurnTime);
-
-		NBTTagCompound fuelTag = new NBTTagCompound();
-
-		tag.setTag("Items", fuelTag);
 
 		NBTTagCompound energyTag = new NBTTagCompound();
 		this.energy.writeToNBT(energyTag);
@@ -118,6 +115,18 @@ public class TileEntropyAccelerator extends TileSimpleInventory implements IEner
 
 			}
 		}
+	}
+
+	public void setProgress(int value) {
+		currentBurnTime = value;
+	}
+
+	public int getProgress() {
+		return currentBurnTime;
+	}
+
+	public boolean canInteractWith(EntityPlayer player) {
+		return !isInvalid() && player.getDistanceSq(this.pos.add(0.5D, 0.5D, 0.5D)) <= 64.0D;
 	}
 
 	// energy stuff
