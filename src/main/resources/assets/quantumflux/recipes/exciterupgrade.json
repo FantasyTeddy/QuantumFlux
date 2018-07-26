@@ -1,0 +1,25 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "rqr",
+    "ddd"
+  ],
+  "key": {
+    "r": {
+      "type": "forge:ore_dict",
+      "ore": "dustRedstone"
+    },
+    "q": {
+      "item": "quantumflux:craftingPiece",
+      "data": 0
+    },
+    "d": {
+      "item": "quantumflux:darkstone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "quantumflux:exciterUpgrade",
+    "count": 2
+  }
+}

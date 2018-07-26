@@ -1,0 +1,25 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "qeq",
+    "cqc"
+  ],
+  "key": {
+    "q": {
+      "item": "quantumflux:craftingPiece",
+      "data": 0
+    },
+    "e": {
+      "item": "quantumflux:craftingPiece",
+      "data": 3
+    },
+    "c": {
+      "item": "quantumflux:craftingPiece",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "quantumflux:rfExciter",
+    "count": 2
+  }
+}

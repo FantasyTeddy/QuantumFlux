@@ -1,0 +1,33 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "ada",
+    "qcq",
+    "ggg"
+  ],
+  "key": {
+    "a": {
+      "item": "quantumflux:craftingPiece",
+      "data": 5
+    },
+    "d": {
+      "item": "quantumflux:craftingPiece",
+      "data": 6
+    },
+    "q": {
+      "item": "quantumflux:craftingPiece",
+      "data": 0
+    },
+    "c": {
+      "item": "quantumflux:quibitCluster",
+      "data": 2
+    },
+    "g": {
+      "item": "quantumflux:craftingPiece",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "quantumflux:zeroPointExtractor"
+  }
+}

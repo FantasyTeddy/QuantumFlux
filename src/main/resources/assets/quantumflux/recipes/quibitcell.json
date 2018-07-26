@@ -1,0 +1,33 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    " q ",
+    "gcg",
+    "rar"
+  ],
+  "key": {
+    "q": {
+      "item": "quantumflux:craftingPiece",
+      "data": 0
+    },
+    "g": {
+      "item": "quantumflux:craftingPiece",
+      "data": 1
+    },
+    "c": {
+      "item": "quantumflux:quibitCluster",
+      "data": 3
+    },
+    "r": {
+      "type": "forge:ore_dict",
+      "ore": "dustRedstone"
+    },
+    "a": {
+      "item": "quantumflux:craftingPiece",
+      "data": 5
+    }
+  },
+  "result": {
+    "item": "quantumflux:quibitCell"
+  }
+}

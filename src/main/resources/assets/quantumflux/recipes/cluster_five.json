@@ -1,0 +1,22 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "c c",
+    " a ",
+    "c c"
+  ],
+  "key": {
+    "c": {
+      "item": "quantumflux:quibitCluster",
+      "data": 4
+    },
+    "a": {
+      "item": "quantumflux:craftingPiece",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "quantumflux:quibitCluster",
+    "data": 5
+  }
+}

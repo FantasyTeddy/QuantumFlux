@@ -1,0 +1,27 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "csc",
+    "cdc",
+    "csc"
+  ],
+  "key": {
+    "c": {
+      "type": "forge:ore_dict",
+      "ore": "cobblestone"
+    },
+    "d": {
+      "type": "forge:ore_dict",
+      "ore": "dyeBlack"
+    },
+    "s": {
+      "type": "forge:ore_dict",
+      "ore": "stone"
+    }
+  },
+  "result": {
+    "item": "quantumflux:darkstone",
+    "data": 0,
+    "count": 16
+  }
+}

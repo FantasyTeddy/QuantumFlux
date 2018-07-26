@@ -1,0 +1,27 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    " e ",
+    "qdq",
+    " e "
+  ],
+  "key": {
+    "e": {
+      "item": "quantumflux:craftingPiece",
+      "data": 3
+    },
+    "q": {
+      "type": "forge:ore_dict",
+      "ore": "gemQuartz"
+    },
+    "d": {
+      "type": "forge:ore_dict",
+      "ore": "gemDiamond"
+    }
+  },
+  "result": {
+    "item": "quantumflux:craftingPiece",
+    "data": 0,
+    "count": 2
+  }
+}

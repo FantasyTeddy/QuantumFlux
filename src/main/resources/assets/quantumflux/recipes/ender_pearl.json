@@ -1,0 +1,16 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "ee",
+    "ee"
+  ],
+  "key": {
+    "e": {
+      "item": "quantumflux:craftingPiece",
+      "data": 3
+    }
+  },
+  "result": {
+    "item": "minecraft:ender_pearl"
+  }
+}

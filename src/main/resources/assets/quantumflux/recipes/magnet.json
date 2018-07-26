@@ -1,0 +1,25 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "e e",
+    "a a",
+    " i "
+  ],
+  "key": {
+    "e": {
+      "item": "quantumflux:craftingPiece",
+      "data": 3
+    },
+    "a": {
+      "item": "quantumflux:craftingPiece",
+      "data": 2
+    },
+    "i": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    }
+  },
+  "result": {
+    "item": "quantumflux:magnet"
+  }
+}

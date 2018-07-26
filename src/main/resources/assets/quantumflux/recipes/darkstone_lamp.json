@@ -1,0 +1,23 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "d d",
+    " l ",
+    "d d"
+  ],
+  "key": {
+    "d": {
+      "item": "quantumflux:darkstone",
+      "data": 0
+    },
+    "l": {
+      "type": "forge:ore_dict",
+      "ore": "dyeBlue"
+    }
+  },
+  "result": {
+    "item": "quantumflux:darkstone",
+    "data": 1,
+    "count": 4
+  }
+}

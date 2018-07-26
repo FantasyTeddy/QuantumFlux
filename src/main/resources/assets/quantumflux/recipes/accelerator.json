@@ -1,0 +1,31 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "ccc",
+    "dfd",
+    "ili"
+  ],
+  "key": {
+    "c": {
+      "item": "quantumflux:craftingPiece",
+      "data": 1
+    },
+    "d": {
+      "item": "quantumflux:darkstone",
+      "data": 0
+    },
+    "f": {
+      "item": "minecraft:furnace"
+    },
+    "i": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "l": {
+      "item": "minecraft:lava_bucket"
+    }
+  },
+  "result": {
+    "item": "quantumflux:entropyAccelerator"
+  }
+}

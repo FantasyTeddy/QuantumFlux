@@ -1,0 +1,34 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "grg",
+    "ehe",
+    "ppp"
+  ],
+  "key": {
+    "g": {
+      "type": "forge:ore_dict",
+      "ore": "nuggetGold"
+    },
+    "r": {
+      "type": "forge:ore_dict",
+      "ore": "dustRedstone"
+    },
+    "e": {
+      "item": "quantumflux:craftingPiece",
+      "data": 3
+    },
+    "p": {
+      "type": "forge:ore_dict",
+      "ore": "paper"
+    },
+    "h": {
+      "item": "quantumflux:craftingPiece",
+      "data": 6
+    }
+  },
+  "result": {
+    "item": "quantumflux:craftingPiece",
+    "data": 5
+  }
+}

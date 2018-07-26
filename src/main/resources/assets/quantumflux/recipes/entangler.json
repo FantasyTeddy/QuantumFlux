@@ -1,0 +1,33 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "qsq",
+    "xax",
+    "ccc"
+  ],
+  "key": {
+    "q": {
+      "item": "quantumflux:craftingPiece",
+      "data": 0
+    },
+    "s": {
+      "type": "forge:ore_dict",
+      "ore": "netherStar"
+    },
+    "x": {
+      "item": "quantumflux:craftingPiece",
+      "data": 5
+    },
+    "a": {
+      "item": "quantumflux:quibitCluster",
+      "data": 2
+    },
+    "c": {
+      "item": "quantumflux:craftingPiece",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "quantumflux:rfEntangler"
+  }
+}

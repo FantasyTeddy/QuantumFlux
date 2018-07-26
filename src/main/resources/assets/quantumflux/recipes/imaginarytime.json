@@ -1,0 +1,29 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "cqc",
+    "s3s",
+    "cqc"
+  ],
+  "key": {
+    "q": {
+      "item": "quantumflux:craftingPiece",
+      "data": 0
+    },
+    "c": {
+      "item": "quantumflux:craftingPiece",
+      "data": 1
+    },
+    "s": {
+      "type": "forge:ore_dict",
+      "ore": "netherStar"
+    },
+    "3": {
+      "item": "quantumflux:quibitCluster",
+      "data": 3
+    }
+  },
+  "result": {
+    "item": "quantumflux:imaginaryTime"
+  }
+}

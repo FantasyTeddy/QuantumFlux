@@ -4,7 +4,6 @@ import jotato.quantumflux.net.PacketHandler;
 import jotato.quantumflux.registers.BlockRegister;
 import jotato.quantumflux.registers.EventRegister;
 import jotato.quantumflux.registers.ItemRegister;
-import jotato.quantumflux.registers.RecipeRegister;
 import jotato.quantumflux.registers.WorldRegister;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -24,7 +23,6 @@ public class ProxyCommon {
 
 	public void postInit() {
 		registerTickHandlers();
-		new RecipeRegister().init();
 	}
 
 

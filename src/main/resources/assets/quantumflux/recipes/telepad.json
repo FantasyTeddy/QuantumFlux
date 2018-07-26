@@ -1,0 +1,29 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    " a ",
+    "ere",
+    "ddd"
+  ],
+  "key": {
+    "a": {
+      "item": "quantumflux:craftingPiece",
+      "data": 5
+    },
+    "e": {
+      "type": "forge:ore_dict",
+      "ore": "enderpearl"
+    },
+    "r": {
+      "type": "forge:ore_dict",
+      "ore": "dustRedstone"
+    },
+    "d": {
+      "item": "quantumflux:darkstone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "quantumflux:telepad"
+  }
+}

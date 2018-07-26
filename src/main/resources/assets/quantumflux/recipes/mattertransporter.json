@@ -1,0 +1,25 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "b b",
+    " c ",
+    " s "
+  ],
+  "key": {
+    "b": {
+      "type": "forge:ore_dict",
+      "ore": "slimeball"
+    },
+    "c": {
+      "item": "quantumflux:craftingPiece",
+      "data": 5
+    },
+    "s": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "quantumflux:matterTransporter"
+  }
+}

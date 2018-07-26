@@ -1,0 +1,21 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "sss",
+    "sbs",
+    "sss"
+  ],
+  "key": {
+    "s": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "b": {
+      "type": "forge:ore_dict",
+      "ore": "slimeball"
+    }
+  },
+  "result": {
+    "item": "quantumflux:mobGlue"
+  }
+}

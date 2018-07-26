@@ -1,0 +1,16 @@
+{
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "quantumflux:craftingPiece",
+      "data": 3
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "paper"
+    }
+  ],
+  "result": {
+    "item": "quantumflux:linkingCard"
+  }
+}
