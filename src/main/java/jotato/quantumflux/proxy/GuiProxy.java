@@ -1,4 +1,4 @@
-package jotato.quantumflux;
+package jotato.quantumflux.proxy;
 
 import jotato.quantumflux.machines.entropyaccelerator.ContainerEntropyAccelerator;
 import jotato.quantumflux.machines.entropyaccelerator.GuiEntropyAccelerator;
@@ -9,11 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
-import javax.annotation.Nullable;
-
 public class GuiProxy implements IGuiHandler {
 
-	@Nullable
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		BlockPos pos = new BlockPos(x, y, z);
@@ -24,7 +21,6 @@ public class GuiProxy implements IGuiHandler {
 		return null;
 	}
 
-	@Nullable
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		BlockPos pos = new BlockPos(x, y, z);
