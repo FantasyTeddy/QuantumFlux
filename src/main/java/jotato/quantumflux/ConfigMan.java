@@ -29,6 +29,8 @@ public class ConfigMan
 
     public static boolean oreGenerationEnabled;
 
+    public static int magnet_range;
+
     public static void init(Configuration configuration)
     {
         config = configuration;
@@ -61,5 +63,7 @@ public class ConfigMan
         imaginaryTime_chargeRate=config.getInt("chargeRate", "imaginaryTime", 250,25,1000,"How much RF/T it can accept. Setting this lower than the energyRequirement means it won't work every tick");
 
         oreGenerationEnabled = config.getBoolean("enabled", "oreGeneration", true , "Can be used to disable ore generation");
+
+        magnet_range = config.getInt("range", "magnet",6, 3, 16, "How far the magnet can reach");
     }
 }

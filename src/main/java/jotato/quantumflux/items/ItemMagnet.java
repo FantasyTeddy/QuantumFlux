@@ -2,6 +2,7 @@ package jotato.quantumflux.items;
 
 import java.util.Iterator;
 
+import jotato.quantumflux.ConfigMan;
 import jotato.quantumflux.Logger;
 import jotato.quantumflux.helpers.EntityHelpers;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -23,7 +24,7 @@ public class ItemMagnet extends ItemBase {
 	public ItemMagnet() {
 		super(name);
 		setMaxStackSize(1);
-		this.distanceFromPlayer = 6.5;
+		this.distanceFromPlayer = ConfigMan.magnet_range;
 		canRepair = false;
 		setMaxDamage(0);
 
