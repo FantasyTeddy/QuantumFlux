@@ -2,6 +2,7 @@ package jotato.quantumflux.world;
 
 import java.util.Random;
 
+import jotato.quantumflux.ConfigMan;
 import jotato.quantumflux.registers.BlockRegister;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -19,8 +20,9 @@ public class QuantumWorldGenerator implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
-		
-		spawnBlock(BlockRegister.graphiteOre.getDefaultState(),Blocks.STONE.getDefaultState(),world,random,chunkX*16,chunkZ*16,6,10,30);
+
+		if (ConfigMan.oreGenerationEnabled)
+			spawnBlock(BlockRegister.graphiteOre.getDefaultState(), Blocks.STONE.getDefaultState(), world, random, chunkX*16, chunkZ*16, 6, 10, 30);
 	}
 
 	public void spawnBlock(IBlockState block, IBlockState targetBlock, World world, Random random, int blockXPos,
