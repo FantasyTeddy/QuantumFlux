@@ -68,6 +68,9 @@ public class ItemMagnet extends ItemBase {
 				player.posZ, this.distanceFromPlayer).iterator();
 		while (iterator.hasNext()) {
 			EntityItem itemToGet = (EntityItem) iterator.next();
+			if (itemToGet.getEntityData().getBoolean("PreventRemoteMovement")) {
+				continue;
+			}
 			if(itemToGet.ticksExisted<=1) itemToGet.setPickupDelay(1);
 			itemToGet.onCollideWithPlayer(player);
 		}
