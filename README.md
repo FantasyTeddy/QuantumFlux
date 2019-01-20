@@ -8,7 +8,7 @@ QuantumFlux is a Forge mod for Minecraft that focuses on adding ways to generate
 This repository contains the official QuantumFlux source code since Minecraft 1.11. (see: [Ownership of QuantumFlux changing](https://www.reddit.com/r/feedthebeast/comments/8zb4i2/ownership_of_quantumflux_changing/))
 
 ### Downloads
-The official releases can be found at [CurseForge](http://www.curse.com/mc-mods/minecraft/228609-quantumflux).
+The official releases can be found at [CurseForge](https://www.curseforge.com/minecraft/mc-mods/quantumflux).
 
 ### Modpack Distribution
 Sure, please link to the [CurseForge project](https://minecraft.curseforge.com/projects/quantumflux) page though. Just don't be a jerk, make claims you can't back, or sell mod items on your server.
