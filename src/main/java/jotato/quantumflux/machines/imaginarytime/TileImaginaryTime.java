@@ -21,7 +21,7 @@ public class TileImaginaryTime extends TileBase implements IEnergyReceiver, IEne
 	protected EnergyStorage localEnergyStorage;
 
 	public TileImaginaryTime() {
-		localEnergyStorage = new EnergyStorage(1000, ConfigMan.imaginaryTime_chargeRate);
+		localEnergyStorage = new EnergyStorage(1000, ConfigMan.imaginaryTime_chargeRate, ConfigMan.imaginaryTime_energyRequirement);
 	}
 
 	@Override
