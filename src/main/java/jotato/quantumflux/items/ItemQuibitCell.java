@@ -20,6 +20,7 @@ public class ItemQuibitCell extends ItemBase {
 		super("quibitCell");
 		canRepair = false;
 		setMaxDamage(0);
+		setMaxStackSize(1);
 	}
 
 	@Override
