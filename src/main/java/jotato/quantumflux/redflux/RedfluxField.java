@@ -72,9 +72,9 @@ public final class RedfluxField
 		for (int i=0;i<links.size();i++)
 		{
 			link=links.get(i);
-			if (link.canSend())
+			if (link.canSendWireless())
 			{
-				tosend += link.requestEnergy(value - tosend, simulate);
+				tosend += link.sendEnergyWireless(value - tosend, simulate);
 
 				if (tosend >= value)
 				{

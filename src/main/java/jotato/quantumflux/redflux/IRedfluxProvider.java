@@ -12,13 +12,13 @@ public interface IRedfluxProvider {
 	 * 
 	 * @return True if the exciter can receive power. Should return False for self
 	 */
-	public boolean canReceive();
+	public boolean canReceiveWireless();
 	
 	/**
 	 * 
 	 * @return whether or not the Exciter can send power
 	 */
-	public boolean canSend();
+	public boolean canSendWireless();
 	
 	/**
 	 * 
@@ -28,7 +28,7 @@ public interface IRedfluxProvider {
 	 * 			TRUE if it should be simulated
 	 * @return amount of given energy that wasn't consumed; (0 if all was used)
 	 */
-	public int receiveEnergy(int energy, boolean simulate);
+	public int receiveEnergyWireless(int energy, boolean simulate);
 	
 	
 	/**
@@ -37,6 +37,6 @@ public interface IRedfluxProvider {
 	 * @param simulate
 	 * @return amount of energy that was available to give
 	 */
-	public int requestEnergy(int energy, boolean simulate);
+	public int sendEnergyWireless(int energy, boolean simulate);
 
 }

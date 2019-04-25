@@ -105,20 +105,20 @@ public class TileRFEntangler extends TileEntity implements IEnergyReceiver, IRed
 	}
 
 	@Override
-	public boolean canSend()
+	public boolean canSendWireless()
 	{
 		return true;
 	}
 
 	@Override
-	public boolean canReceive()
+	public boolean canReceiveWireless()
 	{
 		// #3 no support for wireless receiving of energy. only sending
 		return false;
 	}
 
 	@Override
-	public int requestEnergy(int energy, boolean simulate)
+	public int sendEnergyWireless(int energy, boolean simulate)
 	{
 		int given = this.storage.extractEnergy(energy, simulate);
 
@@ -135,7 +135,7 @@ public class TileRFEntangler extends TileEntity implements IEnergyReceiver, IRed
 	}
 
 	@Override
-	public int receiveEnergy(int energy, boolean simulate)
+	public int receiveEnergyWireless(int energy, boolean simulate)
 	{
 		// #3 no support for wireless receiving of energy. only sending
 		return energy;
@@ -222,6 +222,16 @@ public class TileRFEntangler extends TileEntity implements IEnergyReceiver, IRed
 	@Override
 	public int extractEnergy(int maxExtract, boolean simulate) {
 		return 0;
+	}
+
+	@Override
+	public boolean canReceive() {
+		return canConnectEnergy(null);
+	}
+
+	@Override
+	public int receiveEnergy(int maxReceive, boolean simulate) {
+		return receiveEnergy(null, maxReceive, simulate);
 	}
 
 	@Override
