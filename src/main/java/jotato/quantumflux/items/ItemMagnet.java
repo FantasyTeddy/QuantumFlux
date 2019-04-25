@@ -2,11 +2,15 @@ package jotato.quantumflux.items;
 
 import java.util.Iterator;
 
+import baubles.api.BaubleType;
+import baubles.api.IBauble;
 import jotato.quantumflux.ConfigMan;
 import jotato.quantumflux.Logger;
 import jotato.quantumflux.helpers.EntityHelpers;
+import jotato.quantumflux.registers.ItemRegister;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,17 +18,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.Optional;
 
-public class ItemMagnet extends ItemBase {
-	protected double distanceFromPlayer;
+@Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles", striprefs = true)
+public class ItemMagnet extends ItemBase implements IBauble {
 	protected static String name = "magnet";
 
 	public ItemMagnet() {
 		super(name);
 		setMaxStackSize(1);
-		this.distanceFromPlayer = ConfigMan.magnet_range;
 		canRepair = false;
 		setMaxDamage(0);
 
@@ -54,18 +59,20 @@ public class ItemMagnet extends ItemBase {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void onUpdate(ItemStack item, World world, Entity entity, int i, boolean f) {
+		if(!world.isRemote && entity instanceof EntityPlayer) {
+			doMagnet(item, (EntityPlayer) entity, entity.getEntityWorld());
+		}
+	}
+
+	private static void doMagnet(ItemStack item, EntityPlayer player, World world) {
 		if (world.isRemote)
 			return;
 		if (!isActivated(item))
 			return;
-		if (!(entity instanceof EntityPlayer))
-			return;
-
-		EntityPlayer player = (EntityPlayer) entity;
 
 		// items
 		Iterator iterator = EntityHelpers.getEntitiesInRange(EntityItem.class, world, player.posX, player.posY,
-				player.posZ, this.distanceFromPlayer).iterator();
+				player.posZ, ConfigMan.magnet_range).iterator();
 		while (iterator.hasNext()) {
 			EntityItem itemToGet = (EntityItem) iterator.next();
 			if (itemToGet.isDead || itemToGet.getEntityData().getBoolean("PreventRemoteMovement")) {
@@ -77,7 +84,7 @@ public class ItemMagnet extends ItemBase {
 
 		// xp
 		iterator = EntityHelpers.getEntitiesInRange(EntityXPOrb.class, world, player.posX, player.posY, player.posZ,
-				this.distanceFromPlayer).iterator();
+				ConfigMan.magnet_range).iterator();
 		while (iterator.hasNext()) {
 			EntityXPOrb xpToGet = (EntityXPOrb) iterator.next();
 			player.xpCooldown=0;
@@ -86,7 +93,38 @@ public class ItemMagnet extends ItemBase {
 		}
 	}
 
-	protected boolean isActivated(ItemStack item) {
-		return item.getItemDamage() == 1;
+	private static boolean isActivated(ItemStack item) {
+		if(item.getItem() == ItemRegister.magnet) {
+			return item.getItemDamage() == 1;
+		}
+
+		return false;
+	}
+
+	@Optional.Method(modid = "baubles")
+	@Override
+	public void onWornTick(ItemStack stack, EntityLivingBase player) {
+		if (player instanceof EntityPlayer && isActivated(stack)) {
+			doMagnet(stack, (EntityPlayer) player, player.getEntityWorld());
+		}
+	}
+
+	@Optional.Method(modid = "baubles")
+	@Override
+	public BaubleType getBaubleType(ItemStack itemstack) {
+		return BaubleType.TRINKET;
+	}
+
+	public static void toggleMagnetWithMessage(ItemStack stack, EntityPlayer player) {
+		if(stack.isEmpty()) return;
+
+		if(isActivated(stack)) {
+			stack.setItemDamage(0);
+			player.sendMessage(new TextComponentString("Magnet disabled"));
+		}
+		else{
+			stack.setItemDamage(1);
+			player.sendMessage(new TextComponentString("Magnet enabled"));
+		}
 	}
 }
