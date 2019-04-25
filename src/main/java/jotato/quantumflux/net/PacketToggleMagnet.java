@@ -44,7 +44,7 @@ public class PacketToggleMagnet implements IMessage {
 			try {
 				ItemMagnet.toggleMagnetWithMessage(findMagnetBaubles(p), p);
 			}catch (NoSuchMethodError e) {}
-			
+
 			// Normal inventory toggle
 			for (int i = 0; i < inv.size(); i++) {
 				if (inv.get(i).getItem() instanceof ItemMagnet) {
@@ -54,7 +54,7 @@ public class PacketToggleMagnet implements IMessage {
 
 		}
 	}
-	
+
 	@Optional.Method(modid = "baubles")
 	public static ItemStack findMagnetBaubles(EntityPlayer player) {
 		IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);

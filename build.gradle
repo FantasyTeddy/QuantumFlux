@@ -21,7 +21,7 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.4.2705"
+    version = "1.12.2-14.23.5.2768"
     runDir = "run"
 
     // the mappings can be changed at any time, and must be in the following format.
@@ -38,10 +38,15 @@ repositories {
         name = "CoFH Maven"
         url = "http://maven.covers1624.net"
     }
+    maven {
+        name = "thiakil"
+        url = "http://maven.thiakil.com"
+    }
 }
 
 dependencies {
-    deobfCompile "cofh:RedstoneFlux:1.12-2.0.2.3:universal"
+    compile "cofh:RedstoneFlux:1.12-2.0.2.3:universal"
+    provided "com.azanor.baubles:Baubles:1.12-1.5.2"
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"

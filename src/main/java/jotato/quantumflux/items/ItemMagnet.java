@@ -24,14 +24,12 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Optional;
 
 @Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles", striprefs = true)
-public class ItemMagnet extends ItemBase implements IBauble{
-	protected double distanceFromPlayer;
+public class ItemMagnet extends ItemBase implements IBauble {
 	protected static String name = "magnet";
 
 	public ItemMagnet() {
 		super(name);
 		setMaxStackSize(1);
-		this.distanceFromPlayer = ConfigMan.magnet_range;
 		canRepair = false;
 		setMaxDamage(0);
 
@@ -65,8 +63,8 @@ public class ItemMagnet extends ItemBase implements IBauble{
 			doMagnet(item, (EntityPlayer) entity, entity.getEntityWorld());
 		}
 	}
-	
-	public static void doMagnet(ItemStack item, EntityPlayer player, World world) {
+
+	private static void doMagnet(ItemStack item, EntityPlayer player, World world) {
 		if (world.isRemote)
 			return;
 		if (!isActivated(item))
@@ -95,14 +93,14 @@ public class ItemMagnet extends ItemBase implements IBauble{
 		}
 	}
 
-	public static boolean isActivated(ItemStack item) {
+	private static boolean isActivated(ItemStack item) {
 		if(item.getItem() == ItemRegister.magnet) {
 			return item.getItemDamage() == 1;
 		}
-		
+
 		return false;
 	}
-	
+
 	@Optional.Method(modid = "baubles")
 	@Override
 	public void onWornTick(ItemStack stack, EntityLivingBase player) {
@@ -110,16 +108,16 @@ public class ItemMagnet extends ItemBase implements IBauble{
 			doMagnet(stack, (EntityPlayer) player, player.getEntityWorld());
 		}
 	}
-	
+
 	@Optional.Method(modid = "baubles")
 	@Override
 	public BaubleType getBaubleType(ItemStack itemstack) {
 		return BaubleType.TRINKET;
 	}
-	
+
 	public static void toggleMagnetWithMessage(ItemStack stack, EntityPlayer player) {
 		if(stack.isEmpty()) return;
-		
+
 		if(isActivated(stack)) {
 			stack.setItemDamage(0);
 			player.sendMessage(new TextComponentString("Magnet disabled"));
@@ -127,6 +125,6 @@ public class ItemMagnet extends ItemBase implements IBauble{
 		else{
 			stack.setItemDamage(1);
 			player.sendMessage(new TextComponentString("Magnet enabled"));
-		}	
+		}
 	}
 }
